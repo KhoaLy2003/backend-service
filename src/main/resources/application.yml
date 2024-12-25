@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /backend-service
+
+spring:
+  application:
+    name: backend-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/backend_service}
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:12345}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        boot:
+          allow_jdbc_metadata_access: false
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+jwt:
+  secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expiration: 86400000
+  refresh-token:
+    expiration: 604800000

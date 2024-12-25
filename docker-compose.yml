@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  mysql-container:
+    container_name: mysql-container
+    image: mysql:8.2.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: backend_service
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-springboot-data:/var/lib/mysql
+      - ./initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+
+  spring-boot-container:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: spring-boot-container
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:mysql://mysql-container:3306/backend_service?serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - DATABASE_PASSWORD=12345
+    depends_on:
+      - mysql-container
+    networks:
+      - backend
+    expose:
+      - 8080
+
+volumes:
+  mysql-springboot-data:
+
+networks:
+  backend:
+    driver: bridge
