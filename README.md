@@ -15,6 +15,7 @@ This is a Spring Boot application that provides functionality for managing accou
 - Spring Boot 3.3
 - MySQL
 - Docker
+- Redis
 
 ## Feature
 1. Account Management
