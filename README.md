@@ -18,6 +18,7 @@ This is a Spring Boot application that provides functionality for managing accou
 - Redis
 - Prometheus
 - Grafana
+- Loki
 
 ## Feature
 1. Account Management
