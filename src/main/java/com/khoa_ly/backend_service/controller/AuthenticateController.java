@@ -31,6 +31,7 @@ public class AuthenticateController {
 
     @GetMapping("/time")
     public ResponseData<String> getTime() {
+        log.info("Get current time");
         return new ResponseData<>(HttpStatus.OK.value(), "Time: " + new Date());
     }
 
