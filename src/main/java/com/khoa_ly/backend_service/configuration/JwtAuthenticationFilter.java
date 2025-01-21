@@ -2,7 +2,6 @@ package com.khoa_ly.backend_service.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.khoa_ly.backend_service.dto.response.ResponseData;
-import com.khoa_ly.backend_service.repository.TokenRepository;
 import com.khoa_ly.backend_service.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +24,6 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
-    private final TokenRepository tokenRepository;
 
     @Override
     protected void doFilterInternal(

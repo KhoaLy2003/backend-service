@@ -8,4 +8,7 @@ public interface AuthenticationService {
     TokenResponse authenticate(LoginRequest loginRequest);
     TokenResponse refreshToken(HttpServletRequest request);
     void logout(HttpServletRequest request);
+    default void revokeToken(String token) {
+        // do nothing
+    }
 }

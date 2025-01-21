@@ -1,0 +1,52 @@
+Contract Number: [CONTRACT_NUMBER]
+This Employment Contract (the "Contract") is entered into on [DATE], by and between:
+Employer:
+Company Name: [COMPANY_NAME].
+Address: [COMPANY_ADDRESS]
+Represented by: John Doe, CEO
+
+Employee:
+Name: [EMPLOYEE_NAME]
+Address: [EMPLOYEE_ADDRESS]
+Position: [EMPLOYEE_POSITION]
+Start Date: [START_DATE]
+
+1. Position and Job Description
+The Employee will be employed as a [EMPLOYEE_POSITION] at TechCorp Inc. and agrees to perform the following duties:
+[JOB_DUTY]: [JOB_DESCRIPTION]
+The Employee agrees to fulfill their responsibilities to the best of their abilities, adhering to all company policies and regulations.
+Employment Type:
+The Employee is hired on a [EMPLOYMENT_TYPE] basis, with the following work schedule:
+[Full-Time: Typically 40 hours per week]
+[Part-Time: Typically less than 40 hours per week]
+
+2. Compensation and Benefits
+Salary:
+The Employee will receive a monthly salary of [SALARY] VND, payable on the [DATE] of each month.
+Bonuses:
+The Employee may be eligible for performance-based bonuses at the Employer’s discretion, subject to company policies and performance reviews.
+Benefits:
+The Employee is entitled to the following benefits:
+Health Insurance: [COMPANY_NAME] will provide health insurance coverage.
+Retirement Plan: The Employer contributes to a retirement savings plan (details to be provided).
+
+3. Work Schedule
+The Employee’s standard work schedule will be from [START_DATE] to [END_DATE], with the possibility of overtime or flexible hours, as agreed upon by both parties.
+
+4. Confidentiality
+The Employee agrees not to disclose any proprietary or confidential information related to the Employer’s operations, business, or clients, both during and after their employment with the company. This includes, but is not limited to, financial records, customer lists, and internal business strategies.
+
+5. Duration and Termination
+Duration:
+The term of this contract will be [DURATION], beginning on the [START_DATE]. After this period, the contract may be renewed based on mutual agreement.
+Termination:
+The Employer reserves the right to terminate the Employee’s employment without notice in case of misconduct, negligence, or violation of company policies.
+
+6. Acknowledgment
+Both parties acknowledge that they have read and understood the terms of this contract and agree to comply with them. By signing below, both parties confirm their acceptance of this agreement.
+
+[Signatures]
+Name:
+Title:
+Signature:
+Date:

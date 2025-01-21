@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -46,6 +46,9 @@ public class Account extends AbstractEntity implements UserDetails {
     @Column(name = "phone", length = 15)
     private String phone;
 
+    @Column(name = "address", length = 255)
+    private String address;
+
     @Column(name = "birthday")
     private Date birthday;
 
@@ -57,17 +60,20 @@ public class Account extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "createdAccount", orphanRemoval = true)
-    private List<Task> createdTasks;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "createdAccount", orphanRemoval = true)
+    private Set<Task> createdTasks;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "assignedAccount", orphanRemoval = true)
-    private List<Task> assignedTasks;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "assignedAccount", orphanRemoval = true)
+    private Set<Task> assignedTasks;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "triggerAccount", orphanRemoval = true)
-    private List<TaskLog> taskLogs;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "triggerAccount", orphanRemoval = true)
+    private Set<TaskLog> taskLogs;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "account", orphanRemoval = true)
-    private List<Token> tokens;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account", orphanRemoval = true)
+//    private List<Token> tokens;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account", orphanRemoval = true)
+    private Set<Contract> contracts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -8,7 +8,6 @@ import com.khoa_ly.backend_service.exception.AccountInactiveException;
 import com.khoa_ly.backend_service.exception.NotFoundException;
 import com.khoa_ly.backend_service.model.Account;
 import com.khoa_ly.backend_service.repository.AccountRepository;
-import com.khoa_ly.backend_service.repository.TokenRepository;
 import com.khoa_ly.backend_service.service.AuthenticationService;
 import com.khoa_ly.backend_service.service.JwtService;
 import com.khoa_ly.backend_service.service.RedisService;
@@ -29,8 +28,14 @@ public class AuthenticateServiceImpl implements AuthenticationService {
     private final AccountRepository accountRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final TokenRepository tokenRepository;
+//    private final TokenRepository tokenRepository;
     private final RedisService redisService;
+
+    @Override
+    public void revokeToken(String token) {
+//        AuthenticationService.super.revokeToken(token);
+        log.info("Revoke token: {}", token);
+    }
 
     @Override
     public TokenResponse authenticate(LoginRequest loginRequest) {

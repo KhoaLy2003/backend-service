@@ -6,14 +6,16 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountDetailResponse extends AccountResponse implements Serializable {
-    Date createdAt;
-    Date updatedAt;
-    List<ContractResponse> contracts;
+public class ContractResponse implements Serializable {
+    Long id;
+    String contractNumber;
+    String startDate;
+    String endDate;
+    Double salary;
+    String status;
+    String contractFileUrl;
 }

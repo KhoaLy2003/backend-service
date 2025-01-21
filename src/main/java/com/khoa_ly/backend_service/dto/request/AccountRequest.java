@@ -1,6 +1,9 @@
 package com.khoa_ly.backend_service.dto.request;
 
+import com.khoa_ly.backend_service.dto.validator.RoleSubset;
+import com.khoa_ly.backend_service.enumeration.Role;
 import com.khoa_ly.backend_service.util.validation.PhoneNumber;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,4 +39,15 @@ public class AccountRequest implements Serializable {
     @NotNull(message = "Date of birth must not be null")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthday;
+
+    @NotBlank(message = "Address must not be blank")
+    private String address;
+
+    @NotNull(message = "Role must not be null")
+    @RoleSubset(anyOf = {Role.MANAGER, Role.STAFF})
+    private Role role;
+
+    @Valid
+    @NotNull(message = "Contract must not be null")
+    private ContractRequest contract;
 }

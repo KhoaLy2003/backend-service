@@ -1,11 +1,11 @@
 package com.khoa_ly.backend_service.exception;
 
 import com.khoa_ly.backend_service.dto.response.ExceptionResponse;
-import com.khoa_ly.backend_service.enumeration.AccountStatus;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,7 +40,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ExceptionResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        String message = String.format("Invalid value '%s' for parameter '%s'. Accepted value are: %s", ex.getValue(), ex.getName(), Arrays.toString(AccountStatus.values()));
+        Class<?> requiredType = ex.getRequiredType();
+        String acceptedValues = requiredType != null && requiredType.isEnum()
+                ? Arrays.toString(requiredType.getEnumConstants())
+                : "N/A";
+        String message = String.format("Invalid value '%s' for parameter '%s'. Accepted values are: %s", ex.getValue(), ex.getName(), acceptedValues);
         return new ResponseEntity<>(new ExceptionResponse(HttpStatus.BAD_REQUEST.value(), "Invalid payload data", message), HttpStatus.BAD_REQUEST);
     }
 
@@ -84,5 +88,19 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ExceptionResponse> handleInvalidTaskStateException(InvalidTaskStateException ex) {
         return new ResponseEntity<>(new ExceptionResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidEnum(HttpMessageNotReadableException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", "Invalid role value");
+        errorResponse.put("message", "Accepted values for role are: ADMIN, MANAGER, STAFF");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ExceptionResponse> handleServiceException(ServiceException ex) {
+        return new ResponseEntity<>(new ExceptionResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
