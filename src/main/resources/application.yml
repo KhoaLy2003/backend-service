@@ -7,10 +7,9 @@ spring:
   application:
     name: backend-service
   datasource:
-    #    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/backend_service}
-    url: ${DATASOURCE_URL:jdbc:mysql://root:baecNhfJwgDwYfdapcMYQYjKxCuIecdZ@roundhouse.proxy.rlwy.net:35733/railway}
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/backend_service}
     username: ${DATABASE_USERNAME:root}
-    password: ${DATABASE_PASSWORD:baecNhfJwgDwYfdapcMYQYjKxCuIecdZ}
+    password: ${DATABASE_PASSWORD:12345}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:

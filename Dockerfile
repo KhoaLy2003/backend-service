@@ -10,11 +10,12 @@ COPY . .
 # Build the application
 RUN mvn clean package -DskipTests
 
+
 FROM eclipse-temurin:17-jdk-alpine
 
-ARG JAR_FILE=target/*.jar
+WORKDIR /app
 
-COPY ${JAR_FILE} backend-service.jar
+COPY --from=build /app/target/backend-service-1.0-SNAPSHOT.jar backend-service.jar
 
 ENTRYPOINT ["java","-jar","backend-service.jar"]
 
